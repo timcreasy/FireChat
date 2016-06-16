@@ -25,3 +25,17 @@ body {
 .messageCard {
   border-bottom: 2px solid black;
 }
+
+.messageUser {
+  font-weight: 900;
+}
+
+.messageText,
+.messageUser,
+.messageTimestamp {
+  display: inline-block;
+}
+
+.messageDeleteButton {
+  float: right;
+}
