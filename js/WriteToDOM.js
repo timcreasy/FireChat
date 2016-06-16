@@ -20,8 +20,11 @@ var Chatty = (function(Chatty) {
   // ============= Creates each individual messageCard =============== //
   Chatty.createMessageCard = function(message) {
 
+    var messageKey = message.key();
+    message = message.val();
+    
+
     // Get data out of message object
-    var currentMessageID = message.messageID;
     var currentMessage = message.message;
     var currentUser = message.user;
 
@@ -45,7 +48,7 @@ var Chatty = (function(Chatty) {
     messageCard.click(Chatty.messageCardClicked);
 
     // Add unique ID to messageCard
-    messageCard.attr('id', "msg--" + currentMessageID);
+    messageCard.attr('id', "msg" + messageKey);
 
     // Return messageCard;
     return messageCard;
