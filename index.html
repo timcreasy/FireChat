@@ -4,23 +4,68 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Chatty</title>
+  <!-- BOOTSTRAP CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" href="css/main.css">
+  <!-- FIREBASE -->
   <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+
 </head>
 <body>
 
-  <input type="text" id="messageInput" placeholder="Add a message">
-  <input type="text" id="userNameInput" placeholder="Add a user name">
-  <button id="newMessageButton">Add Message</button>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-default navbar-fixed-top navbarCustom">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <span class="logo">Chatty Applicaton</span>
+      </a>
+      <form class="navbar-form navbar-right" role="input">
+        <button type="button" id="newMessageButton" class="btn btn-default">New Message</button>
+        <button type="button" id="registerButton" class="btn btn-default">Register</button>
+        <button type="button" id="loginButton" class="btn btn-default">Login</button>
+      </form>
+    </div>
+  </nav>
+  <!-- END NAVBAR -->
 
-  <div id="messagesContainer">
+  <!-- MAIN PAGE CONTENT -->
+  <div id="pageContent">
+
+    <!-- CURRENT USER HEADER -->
+    <h4 id="userLoginHeader"></h4>
+
+    <!-- <input type="text" id="messageInput" placeholder="Add a message">
+    <input type="text" id="userNameInput" placeholder="Add a user name">
+    <button id="newMessageButton">Add Message</button>
+    <br>
+    <input type="text" id="createUserEmailInput" placeholder="Enter a email">
+    <input type="password" id="createUserPasswordInput" placeholder="Enter a password">
+    <button id="registerButton">Register Account</button>
+    <br>
+    <input type="text" id="loginEmailInput" placeholder="Enter login email">
+    <input type="password" id="loginPasswordInput" placeholder="Enter login password">
+    <button id="loginButton">Login</button> -->
+
+    <!-- MESSAGES CONTAINER -->
+    <div id="messagesContainer">
+    </div>
+    <!-- END MESSAGES CONTAINER -->
+
   </div>
+  <!-- END MAIN PAGE CONTENT -->
 
+
+  <!-- JQUERY -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <!-- BOOTSTRAP JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <!-- PERSONAL JS -->
   <script src="js/ChattyFramework.js"></script>
   <script src="js/LoadData.js"></script>
   <script src="js/WriteToDOM.js"></script>
   <script src="js/EventHandlers.js"></script>
+  <script src="js/CreateAccount.js"></script>
+  <script src="js/UserLogin.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

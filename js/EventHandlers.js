@@ -8,7 +8,7 @@ var Chatty = (function(Chatty) {
       // Get message
       var newMessage = snapshot.val();
       // Write message to DOM
-      Chatty.writeMessageToDOM(newMessage);
+      Chatty.prependMessageToDOM(newMessage);
     });
 
   };
@@ -23,6 +23,30 @@ var Chatty = (function(Chatty) {
     }
 
   };
+
+
+
+  // ============= Register user button pressed =============== //
+  Chatty.loginButtonClicked = function() {
+
+    var loginEmail = $('#loginEmailInput').val();
+    var loginPassword = $('#loginPasswordInput').val();
+
+    Chatty.userLogin(loginEmail, loginPassword);
+
+  }; 
+
+
+
+  // ============= Register user button pressed =============== //
+  Chatty.registerButtonClicked = function() {
+
+    var newEmail = $('#createUserEmailInput').val();
+    var newPassword = $('#createUserPasswordInput').val();
+
+    Chatty.createAccount(newEmail, newPassword);
+
+  };  
 
 
   // ============= Handles messageCard delete button pressed =============== //

@@ -9,6 +9,9 @@ var Chatty = (function(Chatty) {
   Chatty.firebaseRef = new Firebase("https://chattytc.firebaseio.com");
 
 
+  // ============= Firebase User Data =============== //
+  Chatty.currentUser = null;
+
   // ============= Write to firebase =============== //
   Chatty.writeMessageToFirebase = function(message) {
 

@@ -7,6 +7,22 @@ var Chatty = (function(Chatty) {
   };
 
 
+
+  Chatty.prependMessageToDOM = function(message) {
+    
+    // Get output container
+    var messagesContainer = $("#messagesContainer");
+
+    // Get message card for message
+    var messageCard = Chatty.createMessageCard(message);
+
+    // Add messageCard to container
+    messagesContainer.prepend(messageCard);
+
+  };
+
+
+
   // ============= Writes each message passed to DOM =============== //
   Chatty.writeMessageToDOM = function(message) {
     

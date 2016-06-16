@@ -18,3 +18,5 @@ Chatty.addFirebaseEvents();
 // Chatty.addMessageToFirebase(myTestMessage);
 
 document.getElementById('newMessageButton').addEventListener("click", Chatty.addNewMessageClicked);
+document.getElementById('registerButton').addEventListener("click", Chatty.registerButtonClicked);
+document.getElementById('loginButton').addEventListener("click", Chatty.loginButtonClicked);
