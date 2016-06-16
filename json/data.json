@@ -1,0 +1,14 @@
+{
+  "messages": [
+    {
+      "message": "What time is everyone heading there?",
+      "user": "Tim",
+      "messageID": ""
+    },
+    {
+      "message": "I'll be there at 9AM!",
+      "user": "Jasmin",
+      "messageID": ""
+    }
+  ]
+}
