@@ -73,13 +73,15 @@ var Chatty = (function(Chatty) {
     // Create elements for message card buildout
     var messageCard = $('<div class="messageCard"></div>');
     var messageText = $('<p class="messageText"></p>').text(currentMessage);
-    var messageUser = $('<h6 class="messageUser"></h6>').text(currentUser);
-    var messageTimestamp = $('<h6 class="messageTimestamp"></h6>').text(Chatty.getTimestamp);
+    var messageUser = $('<h6 class="messageUser"></h6>').text(currentUser + ':');
+    var messageTimestamp = $('<h6 class="messageTimestamp"></h6>').text( '(' + Chatty.getTimestamp() + ')');
 
     // Create message card buildout
-    messageCard.append(messageText);
-    messageCard.append(messageUser);
     messageCard.append(messageTimestamp);
+    messageCard.append(" ");
+    messageCard.append(messageUser);
+    messageCard.append(" ");
+    messageCard.append(messageText);
 
 
     // Add click event listener to card
@@ -105,14 +107,16 @@ var Chatty = (function(Chatty) {
     // Create elements for message card buildout
     var messageCard = $('<div class="messageCard"></div>');
     var messageText = $('<p class="messageText"></p>').text(currentMessage);
-    var messageUser = $('<h6 class="messageUser"></h6>').text(currentUser);
-    var messageTimestamp = $('<h6 class="messageTimestamp"></h6>').text(Chatty.getTimestamp);
+    var messageUser = $('<h6 class="messageUser"></h6>').text(currentUser + ': ');
+    var messageTimestamp = $('<h6 class="messageTimestamp"></h6>').text( '(' + Chatty.getTimestamp() + ') ' );
     var messageDeleteButton = $('<button class="messageDeleteButton">Delete</button>');
 
     // Create message card buildout
-    messageCard.append(messageText);
-    messageCard.append(messageUser);
     messageCard.append(messageTimestamp);
+    messageCard.append(" ");
+    messageCard.append(messageUser);
+    messageCard.append(" ");
+    messageCard.append(messageText);
     messageCard.append(messageDeleteButton);
 
     // Add click event listener to delete button
