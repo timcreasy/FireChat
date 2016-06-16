@@ -12,7 +12,7 @@ var Chatty = (function(Chatty) {
       } else {
         console.log("Authenticated successfully with payload:", authData);
         $('#userLoginHeader').html("Logged in as " + authData.password.email);
-        Chatty.currentUser = authData;
+        Chatty.currentUser = authData.password.email;
       }
     }, {
       remember: "sessionOnly"
@@ -23,4 +23,4 @@ var Chatty = (function(Chatty) {
   // Return augmented Chatty
   return Chatty;
 
-})(Chatty);
+})(Chatty || {});

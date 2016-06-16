@@ -19,6 +19,9 @@
       <a class="navbar-brand" href="#">
         <span class="logo">Chatty Applicaton</span>
       </a>
+
+      <!-- <h3 id="navbarHeader">Testing</h3> -->
+
       <form class="navbar-form navbar-right" role="input">
         <button type="button" id="newMessageButton" class="btn btn-default">New Message</button>
         <button type="button" id="registerButton" class="btn btn-default">Register</button>
@@ -34,18 +37,6 @@
     <!-- CURRENT USER HEADER -->
     <h4 id="userLoginHeader"></h4>
 
-    <!-- <input type="text" id="messageInput" placeholder="Add a message">
-    <input type="text" id="userNameInput" placeholder="Add a user name">
-    <button id="newMessageButton">Add Message</button>
-    <br>
-    <input type="text" id="createUserEmailInput" placeholder="Enter a email">
-    <input type="password" id="createUserPasswordInput" placeholder="Enter a password">
-    <button id="registerButton">Register Account</button>
-    <br>
-    <input type="text" id="loginEmailInput" placeholder="Enter login email">
-    <input type="password" id="loginPasswordInput" placeholder="Enter login password">
-    <button id="loginButton">Login</button> -->
-
     <!-- MESSAGES CONTAINER -->
     <div id="messagesContainer">
     </div>
@@ -55,17 +46,100 @@
   <!-- END MAIN PAGE CONTENT -->
 
 
+  <!-- NEW MESSAGE MODAL -->
+  <div class="modal fade" id="newMessageModal" tabindex="-1" role="dialog" aria-labelledby="newMessageLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="newMessageLabel">Add New Message</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="messageInput">Enter a new message:</label>
+            <input type="text" class="form-control" id="messageInput">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="addMessageButton">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END NEW MESSAGE MODAL -->
+
+
+  <!-- REGISTER USER MODAL -->
+  <div class="modal fade" id="registerUserModal" tabindex="-1" role="dialog" aria-labelledby="registerUserLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="registerUserLabel">Register as new user</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="createUserEmailInput">Enter email:</label>
+            <input type="text" class="form-control" id="createUserEmailInput">
+            <label for="createUserPasswordInput">Enter password:</label>
+            <input type="password" class="form-control" id="createUserPasswordInput">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="createUserButton">Create User</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- REGISTER USER MODAL -->
+
+
+  <!-- LOGIN USER MODAL -->
+  <div class="modal fade" id="loginUserModal" tabindex="-1" role="dialog" aria-labelledby="loginUserLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="loginUserLabel">Login as existing user</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="loginEmailInput">Enter email:</label>
+            <input type="text" class="form-control" id="loginEmailInput">
+            <label for="loginPasswordInput">Enter password:</label>
+            <input type="password" class="form-control" id="loginPasswordInput">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="loginUserButton">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- LOGIN USER MODAL -->
+
+
+
   <!-- JQUERY -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <!-- BOOTSTRAP JS -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <!-- PERSONAL JS -->
   <script src="js/ChattyFramework.js"></script>
-  <script src="js/LoadData.js"></script>
   <script src="js/WriteToDOM.js"></script>
   <script src="js/EventHandlers.js"></script>
   <script src="js/CreateAccount.js"></script>
   <script src="js/UserLogin.js"></script>
+  <script src="js/EventListeners.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
