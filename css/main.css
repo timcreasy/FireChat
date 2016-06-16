@@ -3,7 +3,7 @@ body {
 }
 
 #pageContent {
-  margin-top: 10rem;
+  margin-top: 7rem;
 }
 
 #navbarHeader {
@@ -15,4 +15,13 @@ body {
   background: lightgrey;
   width: 80%;
   margin: 0 auto;
+  padding: 10px;
+}
+
+#userLoginHeader {
+  text-align: center;
+}
+
+.messageCard {
+  border-bottom: 2px solid black;
 }
