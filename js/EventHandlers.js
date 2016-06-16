@@ -3,12 +3,29 @@ var Chatty = (function(Chatty) {
   // ============= Firebase events =============== //
   Chatty.addFirebaseEvents = function() {
 
-    // Retrieve new posts as they are added to our database
+    // Retrieve new messages as they are added to our database
     Chatty.firebaseRef.on("child_added", function(snapshot) {
+      
       // Get message
-      var newMessage = snapshot.val();
-      // Write message to DOM
-      Chatty.writeMessageToDOM(newMessage);
+      var newMessage = snapshot;
+      
+      // Ensure newMessage is a message object
+      if ( typeof(newMessage) === "object") {
+        // Write newMessage to DOM
+        Chatty.writeMessageToDOM(newMessage);
+      } 
+
+    });
+
+    // Remove messages when removed from database
+    Chatty.firebaseRef.on('child_removed', function(oldChildSnapshot) {
+      
+      // Get removed message DOM tag
+      var messageTag = "#msg" + oldChildSnapshot.key();
+      
+      // Remove message
+      $(messageTag).remove();
+
     });
 
   };
@@ -80,8 +97,6 @@ var Chatty = (function(Chatty) {
 
     // Get inputted message
     var messageText = $('#messageInput').val();
-    // Get a uniqueID
-    var messageID = Chatty.getUniqueID();
 
     // Get user info
     var userName;
@@ -96,8 +111,7 @@ var Chatty = (function(Chatty) {
     // Create a newMessage object based on inputs
     var newMessage = {
       "message": messageText,
-      "user": userName,
-      "messageID": messageID
+      "user": userName
     };
 
     // Add newMessage to firebase
@@ -121,7 +135,9 @@ var Chatty = (function(Chatty) {
   // ============= Handles messageCard delete button pressed =============== //
   Chatty.messageDeleteClicked = function() {
 
-    console.log("Delete button pressed");
+    var messageID = event.target.parentNode.id.split("").splice(3).join("");
+
+    Chatty.firebaseRef.child(messageID).remove();
 
   };
 
