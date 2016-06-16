@@ -1,2 +1,2 @@
-// On initial load, load default messages
-Chatty.loadData("../json/data.json");
+Chatty.addFirebaseEvents();
+Chatty.addEventListeners();

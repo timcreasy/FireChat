@@ -1,12 +1,6 @@
 var Chatty = (function(Chatty) {
 
 
-  // ============= Clears all messages from DOM =============== //
-  Chatty.clearAllMessages = function() {
-    $("#messagesContainer").html("");
-  };
-
-
   // ============= Writes each message passed to DOM =============== //
   Chatty.writeMessageToDOM = function(message) {
     
@@ -17,19 +11,7 @@ var Chatty = (function(Chatty) {
     var messageCard = Chatty.createMessageCard(message);
 
     // Add messageCard to container
-    messagesContainer.append(messageCard);
-
-  };
-
-
-  // ============= Writes all messages in array to dom =============== //
-  Chatty.writeAllMessagesToDOM = function() {
-
-    var messages = Chatty.getMessages();
-
-    for (let i = 0; i < messages.length; i++) {
-      Chatty.writeMessageToDOM(messages[i]);
-    }
+    messagesContainer.prepend(messageCard);
 
   };
 
