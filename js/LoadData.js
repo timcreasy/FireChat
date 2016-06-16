@@ -31,6 +31,9 @@ var Chatty = (function(Chatty) {
       var currentMessage = listOfMessages[i];
       // Set uniqueID for message
       currentMessage.messageID = Chatty.getUniqueID();
+
+      Chatty.writeMessageToFirebase(currentMessage);
+
       // Add message to array
       Chatty.addMessage(currentMessage);
       // Write message to DOM

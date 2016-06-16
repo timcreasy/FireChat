@@ -1,5 +1,18 @@
 var Chatty = (function(Chatty) {
 
+  // ============= Firebase events =============== //
+  Chatty.addFirebaseEvents = function() {
+
+    // Retrieve new posts as they are added to our database
+    Chatty.firebaseRef.on("child_added", function(snapshot) {
+      // Get message
+      var newMessage = snapshot.val();
+      // Write message to DOM
+      Chatty.writeMessageToDOM(newMessage);
+    });
+
+  };
+
 
   // ============= Handles messageCard selection =============== //
   Chatty.messageCardClicked = function() {
@@ -8,6 +21,24 @@ var Chatty = (function(Chatty) {
     if ( !$(event.target).hasClass("messageDeleteButton") ) {
       console.log("messageCardClicked");
     }
+
+  };
+
+
+  // ============= Handles messageCard delete button pressed =============== //
+  Chatty.addNewMessageClicked = function() {
+
+    var messageText = $('#messageInput').val();
+    var userName = $('#userNameInput').val();
+    var messageID = Chatty.getUniqueID();
+
+    var newMessage = {
+      "message": messageText,
+      "user": userName,
+      "messageID": messageID
+    };
+
+    Chatty.addMessageToFirebase(newMessage);
 
   };
 
