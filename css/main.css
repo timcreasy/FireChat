@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 #pageContent {
   margin-top: 10rem;
 }
@@ -5,4 +9,10 @@
 #navbarHeader {
   display: inline-block;
   text-align: center;
+}
+
+#messagesContainer {
+  background: lightgrey;
+  width: 80%;
+  margin: 0 auto;
 }
