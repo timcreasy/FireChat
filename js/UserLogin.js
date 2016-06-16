@@ -11,8 +11,9 @@ var Chatty = (function(Chatty) {
         console.log("Login Failed!", error);
       } else {
         console.log("Authenticated successfully with payload:", authData);
-        $('#userLoginHeader').html("Logged in as " + authData.password.email);
+        $('#userLoginHeader').html("Adding messages as " + authData.password.email);
         Chatty.currentUser = authData.password.email;
+        Chatty.rewriteMessagesOnLogin();
       }
     }, {
       remember: "sessionOnly"

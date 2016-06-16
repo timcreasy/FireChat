@@ -1,14 +1,43 @@
 var Chatty = (function(Chatty) {
 
 
-  // ============= Writes each message passed to DOM =============== //
-  Chatty.writeMessageToDOM = function(message) {
+  // ============= Rewrites messages with appropriate delete button on user login =============== //
+  Chatty.rewriteMessagesOnLogin = function() {
+
+    // Empty messages container
+    $('#messagesContainer').html('');
+
+    Chatty.firebaseRef.once("value", function(data) {
+
+      // Get all messages
+      var messages = data.val();
+      console.log(messages);
+      // Loop through each message
+      for (var key in messages) {
+        // Get current message
+        var currentMessage = messages[key];
+        // If currentMessage user tag matches currently logged in user, add delete button with printout
+        if (currentMessage.user === Chatty.currentUser) {
+          Chatty.writeMessageToDOM(currentMessage, key);
+        } else {
+          Chatty.writeMessageToDOMAsGuest(currentMessage, key);
+        }
+      }
+
+    });
+
+  };
+
+
+
+  // ============= Write message to DOM as authenticated user =============== //
+  Chatty.writeMessageToDOM = function(message, messageKey) {
     
     // Get output container
     var messagesContainer = $("#messagesContainer");
 
     // Get message card for message
-    var messageCard = Chatty.createMessageCard(message);
+    var messageCard = Chatty.createMessageCard(message, messageKey);
 
     // Add messageCard to container
     messagesContainer.prepend(messageCard);
@@ -17,12 +46,57 @@ var Chatty = (function(Chatty) {
 
 
 
-  // ============= Creates each individual messageCard =============== //
-  Chatty.createMessageCard = function(message) {
+  // ============= Write message to DOM as guest =============== //
+  Chatty.writeMessageToDOMAsGuest = function(message, messageKey) {
 
-    var messageKey = message.key();
-    message = message.val();
-    
+    // Get output container
+    var messagesContainer = $("#messagesContainer");
+
+    // Get message card for message
+    var messageCard = Chatty.createMessageCardNoDelete(message, messageKey);
+
+    // Add messageCard to container
+    messagesContainer.prepend(messageCard);
+
+
+  };
+
+
+
+  // ============= Buildout message card without delete button =============== //
+  Chatty.createMessageCardNoDelete = function(message, messageKey) {
+
+    // Get data out of message object
+    var currentMessage = message.message;
+    var currentUser = message.user;
+
+    // Create elements for message card buildout
+    var messageCard = $('<div class="messageCard"></div>');
+    var messageText = $('<p class="messageText"></p>').text(currentMessage);
+    var messageUser = $('<h6 class="messageUser"></h6>').text(currentUser);
+    var messageTimestamp = $('<h6 class="messageTimestamp"></h6>').text(Chatty.getTimestamp);
+
+    // Create message card buildout
+    messageCard.append(messageText);
+    messageCard.append(messageUser);
+    messageCard.append(messageTimestamp);
+
+
+    // Add click event listener to card
+    messageCard.click(Chatty.messageCardClicked);
+
+    // Add unique ID to messageCard
+    messageCard.attr('id', "msg" + messageKey);
+
+    // Return messageCard;
+    return messageCard;
+
+  };
+
+
+
+  // ============= Buildout message card with delete button =============== //
+  Chatty.createMessageCard = function(message, messageKey) {
 
     // Get data out of message object
     var currentMessage = message.message;

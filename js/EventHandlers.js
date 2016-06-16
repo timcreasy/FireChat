@@ -7,13 +7,15 @@ var Chatty = (function(Chatty) {
     Chatty.firebaseRef.on("child_added", function(snapshot) {
       
       // Get message
-      var newMessage = snapshot;
+      var newMessage = snapshot.val();
+      var newMessageKey = snapshot.key();
       
-      // Ensure newMessage is a message object
-      if ( typeof(newMessage) === "object") {
-        // Write newMessage to DOM
-        Chatty.writeMessageToDOM(newMessage);
-      } 
+      // If message added matches logged in user, add delete button
+      if(newMessage.user === Chatty.currentUser) {
+        Chatty.writeMessageToDOM(newMessage, newMessageKey);
+      } else {
+        Chatty.writeMessageToDOMAsGuest(newMessage, newMessageKey);
+      }
 
     });
 
