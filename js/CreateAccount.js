@@ -4,7 +4,7 @@ var Chatty = (function(Chatty){
   // ============= Create new user account =============== //
   Chatty.createAccount = function(userEmail, userPassword) {
 
-    Chatty.firebaseRef.createUser({
+    Chatty.firebaseUsersRef.createUser({
       "email": userEmail,
       "password": userPassword
     }, function(error, userData) {

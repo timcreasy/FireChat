@@ -7,11 +7,10 @@ var Chatty = (function(Chatty) {
     // Empty messages container
     $('#messagesContainer').html('');
 
-    Chatty.firebaseRef.once("value", function(data) {
+    Chatty.firebaseMessagesRef.once("value", function(data) {
 
       // Get all messages
       var messages = data.val();
-      console.log(messages);
       // Loop through each message
       for (var key in messages) {
         // Get current message
@@ -70,14 +69,42 @@ var Chatty = (function(Chatty) {
     var currentMessage = message.message;
     var currentUser = message.user;
     var currentMessageTimestamp = message.timestamp;
+    var currentUserID = message.userID;
 
     // Create elements for message card buildout
     var messageCard = $('<div class="messageCard"></div>');
+    var messageImg = $('<div class="messageUserImage"></div>');
     var messageText = $('<p class="messageText"></p>').text(currentMessage);
     var messageUser = $('<h6 class="messageUser"></h6>').text(currentUser + ':');
     var messageTimestamp = $('<h6 class="messageTimestamp"></h6>').text( '(' + currentMessageTimestamp + ')');
 
+
+    var imageElement = null;
+
+    // If message author was not guest
+    if (currentUserID !== "Guest") {
+      var userRef = Chatty.firebaseUsersRef.child(currentUserID);
+      userRef.once("value", function(data) {
+        var profileImage = data.val().profileImage;
+        imageElement = `<img src="${profileImage}">`;
+        console.log(imageElement);
+        messageImg.append(imageElement);
+      });
+
+    // If message author was guest
+    } else {
+
+      // No profile image
+      imageElement = '<img src="http://www.cenpatico.com/files/2014/01/noprofile.gif">';
+      messageImg.append(imageElement);
+    }
+
+    // Append image to message card
+
+
     // Create message card buildout
+    messageCard.append(messageImg);
+    messageCard.append(" ");
     messageCard.append(messageTimestamp);
     messageCard.append(" ");
     messageCard.append(messageUser);
@@ -105,15 +132,41 @@ var Chatty = (function(Chatty) {
     var currentMessage = message.message;
     var currentUser = message.user;
     var currentMessageTimestamp = message.timestamp;
+    var currentUserID = message.userID;
 
     // Create elements for message card buildout
     var messageCard = $('<div class="messageCard"></div>');
+    var messageImg = $('<div class="messageUserImage"></div>');
     var messageText = $('<p class="messageText"></p>').text(currentMessage);
     var messageUser = $('<h6 class="messageUser"></h6>').text(currentUser + ': ');
     var messageTimestamp = $('<h6 class="messageTimestamp"></h6>').text( '(' + currentMessageTimestamp + ')');
     var messageDeleteButton = $('<button class="messageDeleteButton">Delete</button>');
 
+
+    var imageElement = null;
+
+    // If message author was not guest
+    if (currentUserID !== "Guest") {
+      var userRef = Chatty.firebaseUsersRef.child(currentUserID);
+      userRef.once("value", function(data) {
+        var profileImage = data.val().profileImage;
+        imageElement = `<img src="${profileImage}">`;
+        console.log(imageElement);
+        messageImg.append(imageElement);
+      });
+
+    // If message author was guest
+    } else {
+
+      // No profile image
+      imageElement = '<img src="http://www.cenpatico.com/files/2014/01/noprofile.gif">';
+      messageImg.append(imageElement);
+    }
+
+
     // Create message card buildout
+    messageCard.append(messageImg);
+    messageCard.append(" ");
     messageCard.append(messageTimestamp);
     messageCard.append(" ");
     messageCard.append(messageUser);

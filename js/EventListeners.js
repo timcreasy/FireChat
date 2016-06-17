@@ -18,6 +18,11 @@ var Chatty = (function(Chatty) {
     // Login button in modal
     $('#loginUserButton').click(Chatty.loginUserButtonClicked);
 
+    // Profile button in navbar
+    $('#profileButton').click(Chatty.profileButtonClicked);
+    // Profile done button in modal
+    $('#profileDoneButton').click(Chatty.profileDoneButtonClicked);
+
     // Logout button in navbar
     $('#logoutButton').click(Chatty.logoutButtonClicked);
 

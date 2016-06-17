@@ -24,6 +24,7 @@
         <button type="button" id="newMessageButton" class="btn btn-default">New Message</button>
         <button type="button" id="registerButton" class="btn btn-default">Register</button>
         <button type="button" id="loginButton" class="btn btn-default">Log In</button>
+        <button type="button" id="profileButton" class="btn btn-default">Profile</button>
         <button type="button" id="logoutButton" class="btn btn-default">Log Out</button>
       </form>
     </div>
@@ -134,6 +135,33 @@
 
 
 
+  <!-- PROFILE MODAL -->
+  <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="profileLabel">Edit Profile</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="profilePictureInput">Enter a new profile picture:</label>
+            <input type="text" class="form-control" id="profilePictureInput">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="profileDoneButton">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END PROFILE MODAL -->
+
+
+
   <!-- JQUERY -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <!-- BOOTSTRAP JS -->
@@ -145,6 +173,7 @@
   <script src="js/CreateAccount.js"></script>
   <script src="js/UserLogin.js"></script>
   <script src="js/EventListeners.js"></script>
+  <script src="js/UserInfo.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

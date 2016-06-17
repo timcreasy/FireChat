@@ -4,11 +4,13 @@ var Chatty = (function(Chatty) {
   Chatty.addFirebaseEvents = function() {
 
     // Retrieve new messages as they are added to our database
-    Chatty.firebaseRef.on("child_added", function(snapshot) {
+    Chatty.firebaseMessagesRef.on("child_added", function(snapshot) {
       
       // Get message
       var newMessage = snapshot.val();
       var newMessageKey = snapshot.key();
+
+
       
       // If message added matches logged in user, add delete button
       if(newMessage.user === Chatty.currentUser) {
@@ -20,10 +22,11 @@ var Chatty = (function(Chatty) {
     });
 
     // Remove messages when removed from database
-    Chatty.firebaseRef.on('child_removed', function(oldChildSnapshot) {
+    Chatty.firebaseMessagesRef.on('child_removed', function(oldChildSnapshot) {
       
       // Get removed message DOM tag
       var messageTag = "#msg" + oldChildSnapshot.key();
+
       
       // Remove message
       $(messageTag).remove();
@@ -48,11 +51,13 @@ var Chatty = (function(Chatty) {
   Chatty.logoutButtonClicked = function() {
     
     // Log user out
-    Chatty.firebaseRef.unauth();
+    Chatty.firebaseUsersRef.unauth();
     // Reset user header
     $('#userLoginHeader').html("Adding messages as Guest");
     // Reset currentUser
     Chatty.currentUser = null;
+    // Reset currentUserID
+    Chatty.currentUserID = null;
     // Rewrite messages to DOM as guest
     Chatty.rewriteMessagesOnLoginLogout();
 
@@ -180,11 +185,21 @@ var Chatty = (function(Chatty) {
       // Get timestamp
       var timestamp = Chatty.getTimestamp();
 
+      // Get userID
+      var userID = null;
+
+      if (Chatty.currentUserID !== null) {
+        userID = Chatty.currentUserID;
+      } else {
+        userID = "Guest";
+      }
+
       // Create a newMessage object based on inputs
       var newMessage = {
         "message": messageText,
         "user": userName,
-        "timestamp": timestamp
+        "timestamp": timestamp,
+        "userID": userID
       };
 
       // Add newMessage to firebase
@@ -197,6 +212,42 @@ var Chatty = (function(Chatty) {
       $('#newMessageModal').modal('hide');
 
     }
+
+  };
+
+
+  // ============= Profile done button clicked in modal =============== //
+  Chatty.profileDoneButtonClicked = function() {
+
+
+    // Get new profile picture
+    var newProfilePicture = $('#profilePictureInput').val();
+
+    var userID = Chatty.currentUserID;
+
+    // Set profile image to url
+    var ref = new Firebase("https://chattytc.firebaseio.com");
+    ref.child("users").child(Chatty.currentUserID).set({
+      "profileImage": newProfilePicture,
+    });
+
+    // Update UserInfo array
+    Chatty.setUserInfo();
+
+    // Rewrite messages based on new image
+    Chatty.rewriteMessagesOnLoginLogout();
+
+    // Dismiss profile modal
+    $('#profileModal').modal('hide');
+
+  };
+
+
+
+  // ============= Profile button clicked in navbar =============== //
+  Chatty.profileButtonClicked = function() {
+
+    $('#profileModal').modal('show');
 
   };
 
@@ -216,7 +267,7 @@ var Chatty = (function(Chatty) {
     // Get ID of message clicked
     var messageID = event.target.parentNode.id.split("").splice(3).join("");
     // Remove message based on id
-    Chatty.firebaseRef.child(messageID).remove();
+    Chatty.firebaseMessagesRefRef.child(messageID).remove();
 
   };
 
