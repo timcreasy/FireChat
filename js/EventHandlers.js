@@ -177,10 +177,14 @@ var Chatty = (function(Chatty) {
         userName = "Guest";
       }
 
+      // Get timestamp
+      var timestamp = Chatty.getTimestamp();
+
       // Create a newMessage object based on inputs
       var newMessage = {
         "message": messageText,
-        "user": userName
+        "user": userName,
+        "timestamp": timestamp
       };
 
       // Add newMessage to firebase
