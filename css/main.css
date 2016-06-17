@@ -15,7 +15,6 @@ body {
   background: lightgrey;
   width: 80%;
   margin: 0 auto;
-  padding: 10px;
 }
 
 #userLoginHeader {
@@ -24,6 +23,8 @@ body {
 
 .messageCard {
   border-bottom: 2px solid black;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .messageUser {
@@ -39,3 +40,8 @@ body {
 .messageDeleteButton {
   float: right;
 }
+
+.messageCard:nth-child(odd) {
+  background: #7BA9D0;
+}
+

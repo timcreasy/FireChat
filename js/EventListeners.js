@@ -18,6 +18,9 @@ var Chatty = (function(Chatty) {
     // Login button in modal
     $('#loginUserButton').click(Chatty.loginUserButtonClicked);
 
+    // Logout button in navbar
+    $('#logoutButton').click(Chatty.logoutButtonClicked);
+
   };
 
   // Return augmented Chatty
