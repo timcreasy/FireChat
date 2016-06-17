@@ -2,7 +2,7 @@ var Chatty = (function(Chatty) {
 
 
   // ============= Rewrites messages with appropriate delete button on user login =============== //
-  Chatty.rewriteMessagesOnLogin = function() {
+  Chatty.rewriteMessagesOnLoginLogout = function() {
 
     // Empty messages container
     $('#messagesContainer').html('');
