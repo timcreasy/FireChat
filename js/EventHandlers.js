@@ -267,7 +267,7 @@ var Chatty = (function(Chatty) {
     // Get ID of message clicked
     var messageID = event.target.parentNode.id.split("").splice(3).join("");
     // Remove message based on id
-    Chatty.firebaseMessagesRefRef.child(messageID).remove();
+    Chatty.firebaseMessagesRef.child(messageID).remove();
 
   };
 

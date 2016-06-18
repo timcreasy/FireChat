@@ -71,6 +71,9 @@ var Chatty = (function(Chatty) {
     var currentMessageTimestamp = message.timestamp;
     var currentUserID = message.userID;
 
+    console.log(currentUserID);
+
+
     // Create elements for message card buildout
     var messageCard = $('<div class="messageCard"></div>');
     var messageImg = $('<div class="messageUserImage"></div>');
@@ -83,23 +86,23 @@ var Chatty = (function(Chatty) {
 
     // If message author was not guest
     if (currentUserID !== "Guest") {
+
+      // Reference database based on userID
       var userRef = Chatty.firebaseUsersRef.child(currentUserID);
       userRef.once("value", function(data) {
+        // Set users profile image
         var profileImage = data.val().profileImage;
+        // Create img element
         imageElement = `<img src="${profileImage}">`;
-        console.log(imageElement);
+        // Append to messageImg
         messageImg.append(imageElement);
       });
 
-    // If message author was guest
     } else {
-
       // No profile image
       imageElement = '<img src="http://www.cenpatico.com/files/2014/01/noprofile.gif">';
       messageImg.append(imageElement);
     }
-
-    // Append image to message card
 
 
     // Create message card buildout
@@ -134,6 +137,8 @@ var Chatty = (function(Chatty) {
     var currentMessageTimestamp = message.timestamp;
     var currentUserID = message.userID;
 
+    console.log(currentUserID);
+
     // Create elements for message card buildout
     var messageCard = $('<div class="messageCard"></div>');
     var messageImg = $('<div class="messageUserImage"></div>');
@@ -147,17 +152,19 @@ var Chatty = (function(Chatty) {
 
     // If message author was not guest
     if (currentUserID !== "Guest") {
+
+      // Reference database based on userID
       var userRef = Chatty.firebaseUsersRef.child(currentUserID);
       userRef.once("value", function(data) {
+        // Set users profile image
         var profileImage = data.val().profileImage;
+        // Create img element
         imageElement = `<img src="${profileImage}">`;
-        console.log(imageElement);
+        // Append to messageImg
         messageImg.append(imageElement);
       });
 
-    // If message author was guest
     } else {
-
       // No profile image
       imageElement = '<img src="http://www.cenpatico.com/files/2014/01/noprofile.gif">';
       messageImg.append(imageElement);
