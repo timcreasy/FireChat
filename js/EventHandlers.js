@@ -11,7 +11,6 @@ var Chatty = (function(Chatty) {
       var newMessageKey = snapshot.key();
 
 
-      
       // If message added matches logged in user, add delete button
       if(newMessage.user === Chatty.currentUser) {
         Chatty.writeMessageToDOM(newMessage, newMessageKey);
@@ -52,6 +51,18 @@ var Chatty = (function(Chatty) {
     
     // Log user out
     Chatty.firebaseUsersRef.unauth();
+    // Hide Profile button
+    $('#profileButton').addClass("hidden");
+    // Hide Log Out button
+    $('#logoutButton').addClass("hidden");
+    // Show Log in button
+    $('#loginButton').removeClass("hidden");
+    // Add styling to log in button
+    $('#loginButton').addClass("btn btn-default");
+    // Show register button
+    $('#registerButton').removeClass("hidden");
+    // Add styling to register button
+    $('#registerButton').addClass("btn btn-default");
     // Reset user header
     $('#userLoginHeader').html("Adding messages as Guest");
     // Reset currentUser
@@ -216,29 +227,99 @@ var Chatty = (function(Chatty) {
   };
 
 
+  // ============= Clears selected picture =============== //
+  Chatty.clearSelectedPicture = function() {
+
+    var images = $('.profileImages').children();
+    // Loop through each image
+    for (let i = 0; i < images.length; i++) {
+      var currentImage = $(images[i].children[0].children[0]);
+      currentImage.removeClass("selectedImage");
+    }
+
+  };
+
+
+  // ============= Fetches Profile picture image selected =============== //
+  Chatty.getSelectedPicture = function() {
+
+    // Get images
+    var images = $('.profileImages').children();
+    // Loop through each image
+    for (let i = 0; i < images.length; i++) {
+      var currentImage = $(images[i].children[0].children[0]);
+      // If currentImage is selected
+      if (currentImage.hasClass("selectedImage")) {
+        return currentImage.attr("src");
+      }
+    }
+    return null;
+  };
+
+
+  // ============= Profile picture image selected =============== //
+  Chatty.profilePictureSelected = function() {
+
+    // Check if image was selected
+    if (event.target.tagName === "IMG") {
+
+      // First clear selected class from all images
+      Chatty.clearSelectedPicture();
+
+      // Add selected class to image
+      $(event.target).addClass("selectedImage");
+
+    }
+
+  };
+
+
   // ============= Profile done button clicked in modal =============== //
   Chatty.profileDoneButtonClicked = function() {
 
-
-    // Get new profile picture
-    var newProfilePicture = $('#profilePictureInput').val();
-
     var userID = Chatty.currentUserID;
 
-    // Set profile image to url
-    var ref = new Firebase("https://chattytc.firebaseio.com");
-    ref.child("users").child(Chatty.currentUserID).set({
-      "profileImage": newProfilePicture,
-    });
+    // If a default image is selected
+    if (Chatty.getSelectedPicture()) {
 
-    // Update UserInfo array
-    Chatty.setUserInfo();
+      let newProfilePicture = Chatty.getSelectedPicture();
 
-    // Rewrite messages based on new image
-    Chatty.rewriteMessagesOnLoginLogout();
+      // Set profile image to url
+      Chatty.firebaseRef.child("users").child(Chatty.currentUserID).set({
+        "profileImage": newProfilePicture,
+      });
 
-    // Dismiss profile modal
-    $('#profileModal').modal('hide');
+      // // Update UserInfo array
+      // Chatty.setUserInfo();
+
+      // Rewrite messages based on new image
+      Chatty.rewriteMessagesOnLoginLogout();
+
+      // Dismiss profile modal
+      $('#profileModal').modal('hide');
+
+
+    } else {
+
+
+      // Get new profile picture
+      var newProfilePicture = $('#profilePictureInput').val();
+
+      // Set profile image to url
+      Chatty.firebaseRef.child("users").child(Chatty.currentUserID).set({
+        "profileImage": newProfilePicture,
+      });
+
+      // // Update UserInfo array
+      // Chatty.setUserInfo();
+
+      // Rewrite messages based on new image
+      Chatty.rewriteMessagesOnLoginLogout();
+
+      // Dismiss profile modal
+      $('#profileModal').modal('hide');
+
+    }
 
   };
 
@@ -248,6 +329,9 @@ var Chatty = (function(Chatty) {
   Chatty.profileButtonClicked = function() {
 
     $('#profileModal').modal('show');
+
+    // add event listeners to profile images
+    $('.profileImages').click(Chatty.profilePictureSelected);
 
   };
 

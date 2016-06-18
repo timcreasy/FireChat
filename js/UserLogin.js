@@ -45,6 +45,18 @@ var Chatty = (function(Chatty) {
 
   // ============= Login user account success =============== //
   Chatty.loginSuccess = function() {
+    // Show Profile button
+    $('#profileButton').removeClass("hidden");
+    // Add styling to profile button
+    $('#profileButton').addClass("btn btn-default");
+    // Show Log out button
+    $('#logoutButton').removeClass("hidden");
+    // Add styling to log out button
+    $('#logoutButton').addClass("btn btn-danger");
+    // Hide log in button
+    $('#loginButton').addClass("hidden");
+    // Hide register button
+    $('#registerButton').addClass("hidden");
     // Clear fields
     $('#loginEmailInput').val("");
     $('#loginPasswordInput').val("");
