@@ -25,6 +25,7 @@ body {
   border-bottom: 2px solid black;
   padding-left: 15px;
   padding-right: 15px;
+  height: 40px;
 }
 
 .messageUser {
@@ -45,3 +46,12 @@ body {
   background: #7BA9D0;
 }
 
+img {
+  width: 100%;
+}
+
+.messageUserImage {
+  width: 38px;
+  height: 38px;
+  display: inline-block;
+}

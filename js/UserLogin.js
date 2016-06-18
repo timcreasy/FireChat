@@ -3,7 +3,7 @@ var Chatty = (function(Chatty) {
   // ============= Login user account =============== //
   Chatty.userLogin = function(userEmail, userPassword) {
 
-    Chatty.firebaseRef.authWithPassword({
+    Chatty.firebaseUsersRef.authWithPassword({
       "email": userEmail,
       "password": userPassword
     }, function(error, authData) {
@@ -15,6 +15,7 @@ var Chatty = (function(Chatty) {
         $('#userLoginHeader').html("Adding messages as " + authData.password.email);
         // Set currentUser of session
         Chatty.currentUser = authData.password.email;
+        Chatty.currentUserID = authData.uid;
         // Rewrite messages to DOM with appropriate delete buttons
         Chatty.rewriteMessagesOnLoginLogout();
         // Call loginSuccess
