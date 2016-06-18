@@ -12,7 +12,14 @@ var Chatty = (function(Chatty){
       if (error) {
         console.log("Error creating user:", error);
       } else {
+        // Log account UID
         console.log("Successfully created user account with uid:", userData.uid);
+
+        // Set default profile picture
+        Chatty.firebaseRef.child("users").child(userData.uid).set({
+          "profileImage": "http://www.cenpatico.com/files/2014/01/noprofile.gif"
+        });
+
       }
 
     });
