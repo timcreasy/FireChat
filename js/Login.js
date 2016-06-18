@@ -1,5 +1,7 @@
 var Chatty = (function(Chatty) {
 
+
+
   // ============= Login user account =============== //
   Chatty.userLogin = function(userEmail, userPassword) {
 
@@ -26,6 +28,7 @@ var Chatty = (function(Chatty) {
     });
 
   };
+
 
 
   // ============= Login user account failure =============== //
@@ -63,6 +66,64 @@ var Chatty = (function(Chatty) {
     // Hide modal
     $('#loginUserModal').modal('hide');
   };
+
+
+
+  // ============= Login button pressed in modal =============== //
+  Chatty.loginUserButtonClicked = function() {
+
+    // Clear any possible old errors
+    $('#loginErrorOutput').html("");
+
+    // Get values from fields
+    var loginEmail = $('#loginEmailInput').val();
+    var loginPassword = $('#loginPasswordInput').val();
+
+    // Login with information
+    Chatty.userLogin(loginEmail, loginPassword);
+
+  }; 
+
+
+
+  // ============= Login button pressed in navbar =============== //
+  Chatty.loginButtonClicked = function() {
+
+    // Present login modal
+    $('#loginUserModal').modal('show');
+
+  }; 
+
+
+
+  // ============= Log Out button pressed in nav bar =============== //
+  Chatty.logoutButtonClicked = function() {
+    
+    // Log user out
+    Chatty.firebaseUsersRef.unauth();
+    // Hide Profile button
+    $('#profileButton').addClass("hidden");
+    // Hide Log Out button
+    $('#logoutButton').addClass("hidden");
+    // Show Log in button
+    $('#loginButton').removeClass("hidden");
+    // Add styling to log in button
+    $('#loginButton').addClass("btn btn-default");
+    // Show register button
+    $('#registerButton').removeClass("hidden");
+    // Add styling to register button
+    $('#registerButton').addClass("btn btn-default");
+    // Reset user header
+    $('#userLoginHeader').html("Adding messages as Guest");
+    // Reset currentUser
+    Chatty.currentUser = null;
+    // Reset currentUserID
+    Chatty.currentUserID = null;
+    // Rewrite messages to DOM as guest
+    Chatty.rewriteMessages();
+
+  };
+
 
   // Return augmented Chatty
   return Chatty;
