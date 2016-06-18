@@ -32,6 +32,11 @@ var Chatty = (function(Chatty) {
 
     });
 
+    // When users changes
+    Chatty.firebaseUsersRef.on('value', function(dataSnapshot) {
+      Chatty.rewriteMessages();
+    });
+
   };
 
 
@@ -70,7 +75,7 @@ var Chatty = (function(Chatty) {
     // Reset currentUserID
     Chatty.currentUserID = null;
     // Rewrite messages to DOM as guest
-    Chatty.rewriteMessagesOnLoginLogout();
+    Chatty.rewriteMessages();
 
   };
 
@@ -289,11 +294,8 @@ var Chatty = (function(Chatty) {
         "profileImage": newProfilePicture,
       });
 
-      // // Update UserInfo array
-      // Chatty.setUserInfo();
-
       // Rewrite messages based on new image
-      Chatty.rewriteMessagesOnLoginLogout();
+      Chatty.rewriteMessages();
 
       // Dismiss profile modal
       $('#profileModal').modal('hide');
@@ -310,11 +312,8 @@ var Chatty = (function(Chatty) {
         "profileImage": newProfilePicture,
       });
 
-      // // Update UserInfo array
-      // Chatty.setUserInfo();
-
       // Rewrite messages based on new image
-      Chatty.rewriteMessagesOnLoginLogout();
+      Chatty.rewriteMessages();
 
       // Dismiss profile modal
       $('#profileModal').modal('hide');
