@@ -39,6 +39,7 @@ body {
 }
 
 .messageDeleteButton {
+  margin-top: 7px;
   float: right;
 }
 
@@ -54,4 +55,8 @@ img {
   width: 38px;
   height: 38px;
   display: inline-block;
+}
+
+.hidden {
+  display: none;
 }

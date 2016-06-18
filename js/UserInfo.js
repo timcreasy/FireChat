@@ -1,26 +1,7 @@
 var Chatty = (function(Chatty) {
 
-  var userInfo;
 
-
-
-  Chatty.getUserInfo = function(){
-    return userInfo;
-  };
-
-
-
-  Chatty.setUserInfo = function() {
-
-    Chatty.firebaseUsersRef.once("value", function(data) {
-      userInfo = data.val();
-      console.log(userInfo);
-    });
-
-  };
-
-
-
+  // Retrieves profile image URL by userID
   Chatty.getProfilePictureByID = function(id) {
 
     // Set profile picture to null
