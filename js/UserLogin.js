@@ -17,7 +17,7 @@ var Chatty = (function(Chatty) {
         Chatty.currentUser = authData.password.email;
         Chatty.currentUserID = authData.uid;
         // Rewrite messages to DOM with appropriate delete buttons
-        Chatty.rewriteMessagesOnLoginLogout();
+        Chatty.rewriteMessages();
         // Call loginSuccess
         Chatty.loginSuccess();
       }
