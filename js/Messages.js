@@ -11,6 +11,15 @@ var Chatty = (function(Chatty) {
 
 
 
+  // ============= Handles messageCard edit button pressed =============== //
+  Chatty.messageEditClicked = function() {
+    // Get ID of message clicked
+    var messageID = event.target.parentNode.id.split("").splice(3).join("");
+    console.log("Editing message:", messageID);
+  };
+
+
+
   // ============= Handles messageCard delete button pressed =============== //
   Chatty.messageDeleteClicked = function() {
 

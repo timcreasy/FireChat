@@ -145,7 +145,8 @@ var Chatty = (function(Chatty) {
     var messageText = $('<p class="messageText"></p>').text(currentMessage);
     var messageUser = $('<h6 class="messageUser"></h6>').text(currentUser + ': ');
     var messageTimestamp = $('<h6 class="messageTimestamp"></h6>').text( '(' + currentMessageTimestamp + ')');
-    var messageDeleteButton = $('<button class="messageDeleteButton">Delete</button>');
+    var messageEditButton = $('<button class="messageEditButton btn btn-default btn-sm">Edit</button>');
+    var messageDeleteButton = $('<button class="messageDeleteButton btn btn-danger btn-sm">Delete</button>');
 
 
     var imageElement = null;
@@ -180,6 +181,10 @@ var Chatty = (function(Chatty) {
     messageCard.append(" ");
     messageCard.append(messageText);
     messageCard.append(messageDeleteButton);
+    messageCard.append(messageEditButton);
+
+    // Add click event listener to edit button
+    messageEditButton.click(Chatty.messageEditClicked);
 
     // Add click event listener to delete button
     messageDeleteButton.click(Chatty.messageDeleteClicked);
