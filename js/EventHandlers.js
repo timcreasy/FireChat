@@ -40,17 +40,6 @@ var Chatty = (function(Chatty) {
   };
 
 
-  // ============= Handles messageCard selection =============== //
-  Chatty.messageCardClicked = function() {
-
-    // Ignore messageCard delete button being clicked
-    if ( !$(event.target).hasClass("messageDeleteButton") ) {
-      console.log("messageCardClicked");
-    }
-
-  };
-
-
   // ============= Log Out button pressed in nav bar =============== //
   Chatty.logoutButtonClicked = function() {
     

@@ -23,7 +23,7 @@
       <form class="navbar-form navbar-right" role="input">
         <button type="button" id="newMessageButton" class="btn btn-default">New Message</button>
         <button type="button" id="registerButton" class="btn btn-default">Register</button>
-        <button type="button" id="loginButton" class="btn btn-default">Log In</button>
+        <button type="button" id="loginButton" class="btn btn-primary">Log In</button>
         <button type="button" class="hidden" id="profileButton" class="btn btn-default">Profile</button>
         <button type="button" class="hidden" id="logoutButton" class="btn btn-default">Log Out</button>
       </form>
@@ -182,9 +182,10 @@
               </div>
             </div>
 
-
-            <label for="profilePictureInput">Enter a new profile picture:</label>
-            <input type="text" class="form-control" id="profilePictureInput">
+            <button type="button" class="btn btn-primary center-block" id="addOwnPictureButton">Add own picture</button>
+            <button type="button" class="btn btn-primary center-block hidden" id="chooseFromDefaultPicturesButton">Choose from defaults</button>
+            <label class="hidden" id="profilePictureInputLabel" for="profilePictureInput">Enter a new profile picture:</label>
+            <input class="hidden form-control" type="text" id="profilePictureInput">
           </div>
         </div>
         <div class="modal-footer">
@@ -205,11 +206,12 @@
   <!-- PERSONAL JS -->
   <script src="js/ChattyFramework.js"></script>
   <script src="js/WriteToDOM.js"></script>
-  <script src="js/EventHandlers.js"></script>
   <script src="js/CreateAccount.js"></script>
-  <script src="js/UserLogin.js"></script>
+  <script src="js/Login.js"></script>
+  <script src="js/Firebase.js"></script>
   <script src="js/EventListeners.js"></script>
-  <script src="js/UserInfo.js"></script>
+  <script src="js/Messages.js"></script>
+  <script src="js/Profile.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

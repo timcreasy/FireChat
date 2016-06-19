@@ -26,6 +26,12 @@ var Chatty = (function(Chatty) {
     // Logout button in navbar
     $('#logoutButton').click(Chatty.logoutButtonClicked);
 
+    // Add own picture button in profile modal
+    $('#addOwnPictureButton').click(Chatty.addOwnPictureButtonClicked);
+
+    // Choose from default pictures button clicked
+    $('#chooseFromDefaultPicturesButton').click(Chatty.chooseFromDefaultPicturesButtonClicked);
+
   };
 
   // Return augmented Chatty
