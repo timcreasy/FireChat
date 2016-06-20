@@ -21,6 +21,8 @@ var Chatty = (function(Chatty) {
 
   // ============= Choose from default pictures button clicked =============== //
   Chatty.chooseFromDefaultPicturesButtonClicked = function() {
+    // Clear any lingering errors
+    $('#profileErrorOutput').html("");
     // Show add own picture button
     $('#addOwnPictureButton').removeClass('hidden');
     // Hide choose from defaults picture button
@@ -114,6 +116,9 @@ var Chatty = (function(Chatty) {
     // Unbind enter event listener
     $(document).unbind("keyup");
 
+    // Clear any lingering errors
+    $('#profileErrorOutput').html("");
+
     // If a default image is selected
     if (Chatty.getSelectedPicture()) {
 
@@ -133,22 +138,36 @@ var Chatty = (function(Chatty) {
 
     } else {
 
-      // Get new profile picture
-      var newProfilePicture = $('#profilePictureInput').val();
+      if ( $('#profilePictureInput').val() === "" ) {
+        
+        // Build up alert
+        var errorOutput = $('#profileErrorOutput');
+        var errorContainer = $('<div class="alert alert-danger"></div>');
 
-      // Set profile image to url
-      Chatty.firebaseRef.child("users").child(Chatty.currentUserID).set({
-        "profileImage": newProfilePicture,
-      });
+        // Add alert to modal
+        errorContainer.append("Please enter a valid URL to an image");
+        errorOutput.append(errorContainer);
 
-      // Rewrite messages based on new image
-      Chatty.rewriteMessages();
+      } else {
 
-      // Clear input field
-      $('#profilePictureInput').val("");
+        // Get new profile picture
+        var newProfilePicture = $('#profilePictureInput').val();
 
-      // Dismiss profile modal
-      $('#profileModal').modal('hide');
+        // Set profile image to url
+        Chatty.firebaseRef.child("users").child(Chatty.currentUserID).set({
+          "profileImage": newProfilePicture,
+        });
+
+        // Rewrite messages based on new image
+        Chatty.rewriteMessages();
+
+        // Clear input field
+        $('#profilePictureInput').val("");
+
+        // Dismiss profile modal
+        $('#profileModal').modal('hide');
+
+      }
 
     }
 
