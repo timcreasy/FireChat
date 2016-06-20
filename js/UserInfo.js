@@ -1,7 +1,7 @@
 var Chatty = (function(Chatty) {
 
 
-  // Retrieves profile image URL by userID
+  // ============= Retrieves profile image URL by userID =============== //
   Chatty.getProfilePictureByID = function(id) {
 
     // Set profile picture to null

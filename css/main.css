@@ -38,8 +38,13 @@ body {
   display: inline-block;
 }
 
+.messageEditButton {
+  margin-right: 7px;
+}
+
+.messageEditButton,
 .messageDeleteButton {
-  margin-top: 7px;
+  margin-top: 5px;
   float: right;
 }
 

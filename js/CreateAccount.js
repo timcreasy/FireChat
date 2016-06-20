@@ -61,6 +61,9 @@ var Chatty = (function(Chatty){
 
     if ( $('#createUserEmailInput').val() !== "" && $('#createUserPasswordInput').val() !== "" ) {
 
+      // Unbind enter event listener
+      $(document).unbind("keyup");
+
       // Get values from fields
       var newEmail = $('#createUserEmailInput').val();
       var newPassword = $('#createUserPasswordInput').val();
@@ -86,6 +89,14 @@ var Chatty = (function(Chatty){
 
     //Present register modal
     $('#registerUserModal').modal('show');
+    // Add enter event listener
+    $(document).unbind("keyup").keyup(function(e){ 
+      var code = e.which; // recommended to use e.which, it's normalized across browsers
+      if(code==13)
+      {
+          $("#createUserButton").click();
+      }
+    });
 
   };  
 

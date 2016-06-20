@@ -1,5 +1,6 @@
 var Chatty = (function(Chatty) {
 
+
     // ============= Adds event listeners to elements =============== //
   Chatty.addEventListeners = function() {
 
@@ -31,6 +32,9 @@ var Chatty = (function(Chatty) {
 
     // Choose from default pictures button clicked
     $('#chooseFromDefaultPicturesButton').click(Chatty.chooseFromDefaultPicturesButtonClicked);
+
+    // Edit message done button in modal
+    $('#editMessageDoneButton').click(Chatty.editMessageDoneButtonClicked);
 
   };
 

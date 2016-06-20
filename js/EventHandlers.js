@@ -1,5 +1,7 @@
 var Chatty = (function(Chatty) {
 
+
+
   // ============= Firebase events =============== //
   Chatty.addFirebaseEvents = function() {
 
@@ -38,6 +40,7 @@ var Chatty = (function(Chatty) {
     });
 
   };
+
 
 
   // ============= Log Out button pressed in nav bar =============== //
@@ -85,6 +88,7 @@ var Chatty = (function(Chatty) {
   }; 
 
 
+
   // ============= Login button pressed in navbar =============== //
   Chatty.loginButtonClicked = function() {
 
@@ -92,6 +96,7 @@ var Chatty = (function(Chatty) {
     $('#loginUserModal').modal('show');
 
   }; 
+
 
 
   // ============= Create user button pressed in modal =============== //
@@ -147,6 +152,7 @@ var Chatty = (function(Chatty) {
   }; 
 
 
+
   // ============= Register user button pressed in navbar =============== //
   Chatty.registerButtonClicked = function() {
 
@@ -154,6 +160,7 @@ var Chatty = (function(Chatty) {
     $('#registerUserModal').modal('show');
 
   };  
+
 
 
   // ============= Add message button clicked in modal =============== //
@@ -221,6 +228,7 @@ var Chatty = (function(Chatty) {
   };
 
 
+
   // ============= Clears selected picture =============== //
   Chatty.clearSelectedPicture = function() {
 
@@ -232,6 +240,7 @@ var Chatty = (function(Chatty) {
     }
 
   };
+
 
 
   // ============= Fetches Profile picture image selected =============== //
@@ -251,6 +260,7 @@ var Chatty = (function(Chatty) {
   };
 
 
+
   // ============= Profile picture image selected =============== //
   Chatty.profilePictureSelected = function() {
 
@@ -266,6 +276,7 @@ var Chatty = (function(Chatty) {
     }
 
   };
+
 
 
   // ============= Profile done button clicked in modal =============== //
@@ -331,6 +342,7 @@ var Chatty = (function(Chatty) {
     $('#newMessageModal').modal('show');
 
   };
+
 
 
   // ============= Handles messageCard delete button pressed =============== //

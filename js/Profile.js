@@ -1,7 +1,8 @@
 var Chatty = (function(Chatty) {
 
 
-  // Add own picture button clicked
+
+  // ============= Add own picture button clicked =============== //
   Chatty.addOwnPictureButtonClicked = function() {
     // Hide default pictures
     $('.profileImages').addClass('hidden');
@@ -18,7 +19,7 @@ var Chatty = (function(Chatty) {
 
 
 
-  // Choose from default pictures button clicked
+  // ============= Choose from default pictures button clicked =============== //
   Chatty.chooseFromDefaultPicturesButtonClicked = function() {
     // Show add own picture button
     $('#addOwnPictureButton').removeClass('hidden');
@@ -35,7 +36,7 @@ var Chatty = (function(Chatty) {
 
 
 
-  // Retrieves profile image URL by userID
+  // ============= Retrieves profile image URL by userID =============== //
   Chatty.getProfilePictureByID = function(id) {
 
     // Set profile picture to null
@@ -109,6 +110,9 @@ var Chatty = (function(Chatty) {
   Chatty.profileDoneButtonClicked = function() {
 
     var userID = Chatty.currentUserID;
+    
+    // Unbind enter event listener
+    $(document).unbind("keyup");
 
     // If a default image is selected
     if (Chatty.getSelectedPicture()) {
@@ -160,11 +164,19 @@ var Chatty = (function(Chatty) {
     // add event listeners to profile images
     $('.profileImages').click(Chatty.profilePictureSelected);
 
+    // Add enter event listener to modal
+    $(document).unbind("keyup").keyup(function(e){ 
+      var code = e.which; // recommended to use e.which, it's normalized across browsers
+      if(code==13)
+      {
+          $("#profileDoneButton").click();
+      }
+    });
+
   };
 
 
-
-  // Retrieves profile image URL by userID
+  // ============= Retrieves profile image URL by userID =============== //
   Chatty.getProfilePictureByID = function(id) {
 
     // Set profile picture to null
