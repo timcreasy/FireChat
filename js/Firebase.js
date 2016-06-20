@@ -37,6 +37,12 @@ var Chatty = (function(Chatty) {
       Chatty.rewriteMessages();
     });
 
+
+    // When message edited
+    Chatty.firebaseMessagesRef.on('value', function(dataSnapshot) {
+      Chatty.rewriteMessages();
+    });
+
   };
   
 

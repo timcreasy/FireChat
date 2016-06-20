@@ -33,6 +33,9 @@ var Chatty = (function(Chatty) {
     // Choose from default pictures button clicked
     $('#chooseFromDefaultPicturesButton').click(Chatty.chooseFromDefaultPicturesButtonClicked);
 
+    // Edit message done button in modal
+    $('#editMessageDoneButton').click(Chatty.editMessageDoneButtonClicked);
+
   };
 
   // Return augmented Chatty
