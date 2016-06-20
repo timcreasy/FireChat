@@ -6,6 +6,14 @@ var Chatty = (function(Chatty) {
 
     // Present new message modal
     $('#newMessageModal').modal('show');
+    // Listen for enter key press
+    $(document).unbind("keyup").keyup(function(e){ 
+      var code = e.which; // recommended to use e.which, it's normalized across browsers
+      if(code==13)
+      {
+          $("#addMessageButton").click();
+      }
+    });
 
   };
 
@@ -49,6 +57,9 @@ var Chatty = (function(Chatty) {
       errorOutput.append(errorContainer);
 
     } else {
+
+      // Unbind enter key presss
+      $(document).unbind("keyup");
 
       // Get inputted message
       var messageText = $('#messageInput').val();

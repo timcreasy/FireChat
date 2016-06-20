@@ -201,6 +201,7 @@ var Chatty = (function(Chatty) {
   };
 
 
+
   // ============= Creates and returns formatted timestamp =============== //
   Chatty.getTimestamp = function() {
 

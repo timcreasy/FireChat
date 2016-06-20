@@ -48,6 +48,8 @@ var Chatty = (function(Chatty) {
 
   // ============= Login user account success =============== //
   Chatty.loginSuccess = function() {
+    // Unbind enter key
+    $(document).unbind("keyup");
     // Show Profile button
     $('#profileButton').removeClass("hidden");
     // Add styling to profile button
@@ -91,6 +93,14 @@ var Chatty = (function(Chatty) {
 
     // Present login modal
     $('#loginUserModal').modal('show');
+    // Add enter event listener
+    $(document).unbind("keyup").keyup(function(e){ 
+      var code = e.which; // recommended to use e.which, it's normalized across browsers
+      if(code==13)
+      {
+          $("#loginUserButton").click();
+      }
+    });
 
   }; 
 

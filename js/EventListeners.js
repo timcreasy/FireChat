@@ -1,5 +1,6 @@
 var Chatty = (function(Chatty) {
 
+
     // ============= Adds event listeners to elements =============== //
   Chatty.addEventListeners = function() {
 
