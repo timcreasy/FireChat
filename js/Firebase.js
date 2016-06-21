@@ -3,7 +3,7 @@ var Chatty = (function(Chatty) {
   // ============= Firebase events =============== //
   Chatty.addFirebaseEvents = function() {
 
-    // Retrieve new messages as they are added to our database
+    // Retrieve new messages as they are added to our database in main chat
     Chatty.firebaseMessagesRef.on("child_added", function(snapshot) {
       
       // Get message
@@ -34,13 +34,13 @@ var Chatty = (function(Chatty) {
 
     // When users changes
     Chatty.firebaseUsersRef.on('value', function(dataSnapshot) {
-      Chatty.rewriteMessages();
+      Chatty.rewriteMessages(Chatty.currentChatRoomRef);
     });
 
 
     // When message edited
     Chatty.firebaseMessagesRef.on('value', function(dataSnapshot) {
-      Chatty.rewriteMessages();
+      Chatty.rewriteMessages(Chatty.currentChatRoomRef);
     });
 
   };

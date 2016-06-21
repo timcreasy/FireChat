@@ -7,7 +7,7 @@ var Chatty = (function(Chatty) {
     // Empty messages container
     $('#messagesContainer').html('');
 
-    Chatty.firebaseMessagesRef.once("value", function(data) {
+    Chatty.currentChatRoomRef.once("value", function(data) {
 
       // Get all messages
       var messages = data.val();
@@ -15,11 +15,15 @@ var Chatty = (function(Chatty) {
       for (var key in messages) {
         // Get current message
         var currentMessage = messages[key];
-        // If currentMessage user tag matches currently logged in user, add delete button with printout
-        if (currentMessage.user === Chatty.currentUser) {
-          Chatty.writeMessageToDOM(currentMessage, key);
-        } else {
-          Chatty.writeMessageToDOMAsGuest(currentMessage, key);
+
+        // ensure you are getting message object
+        if (currentMessage !== "0") {
+          // If currentMessage user tag matches currently logged in user, add delete button with printout
+          if (currentMessage.user === Chatty.currentUser) {
+            Chatty.writeMessageToDOM(currentMessage, key);
+          } else {
+            Chatty.writeMessageToDOMAsGuest(currentMessage, key);
+          }
         }
       }
 
@@ -64,15 +68,12 @@ var Chatty = (function(Chatty) {
 
   // ============= Buildout message card without delete button =============== //
   Chatty.createMessageCardNoDelete = function(message, messageKey) {
-
+    
     // Get data out of message object
     var currentMessage = message.message;
     var currentUser = message.user;
     var currentMessageTimestamp = message.timestamp;
     var currentUserID = message.userID;
-
-    console.log(currentUserID);
-
 
     // Create elements for message card buildout
     var messageCard = $('<div class="messageCard"></div>');
@@ -86,7 +87,6 @@ var Chatty = (function(Chatty) {
 
     // If message author was not guest
     if (currentUserID !== "Guest") {
-
       // Reference database based on userID
       var userRef = Chatty.firebaseUsersRef.child(currentUserID);
       userRef.once("value", function(data) {
@@ -136,8 +136,6 @@ var Chatty = (function(Chatty) {
     var currentUser = message.user;
     var currentMessageTimestamp = message.timestamp;
     var currentUserID = message.userID;
-
-    console.log(currentUserID);
 
     // Create elements for message card buildout
     var messageCard = $('<div class="messageCard"></div>');

@@ -28,7 +28,7 @@ var Chatty = (function(Chatty) {
     var editedTimestamp = "Edited: " + Chatty.getTimestamp();
 
       // Edit message
-      Chatty.firebaseMessagesRef.child(Chatty.messageToEdit).update({
+      Chatty.currentChatRoomRef.child(Chatty.messageToEdit).update({
         "message": editedMessage,
         "timestamp": editedTimestamp
       });
@@ -106,7 +106,7 @@ var Chatty = (function(Chatty) {
     // Get ID of message clicked
     var messageID = event.target.parentNode.id.split("").splice(3).join("");
     // Remove message based on id
-    Chatty.firebaseMessagesRef.child(messageID).remove();
+    Chatty.currentChatRoomRef.child(messageID).remove();
 
   };
 

@@ -17,7 +17,8 @@ body {
   margin: 0 auto;
 }
 
-#userLoginHeader {
+#userLoginHeader,
+#chatRoomHeader {
   text-align: center;
 }
 
@@ -66,7 +67,6 @@ img {
   display: none;
 }
 
-/*#addOwnPictureButton {
-  display: block;
-  text-align: center;
-}*/
+#createNewChatRoomButton {
+  margin-top: 10px;
+}

@@ -21,6 +21,7 @@
       </a>
 
       <form class="navbar-form navbar-right" role="input">
+        <button type="button" id="chatRoomsButton" class="btn btn-default">Chat Rooms</button>
         <button type="button" id="newMessageButton" class="btn btn-default">New Message</button>
         <button type="button" id="registerButton" class="btn btn-default">Register</button>
         <button type="button" id="loginButton" class="btn btn-primary">Log In</button>
@@ -36,6 +37,7 @@
 
     <!-- CURRENT USER HEADER -->
     <h4 id="userLoginHeader">Adding messages as Guest</h4>
+    <h4 id="chatRoomHeader">Current Chat Room: <span id="chatRoomNameHeader">Main</span></h4>
 
     <!-- MESSAGES CONTAINER -->
     <div id="messagesContainer">
@@ -44,6 +46,39 @@
 
   </div>
   <!-- END MAIN PAGE CONTENT -->
+
+
+    <!-- CHAT ROOMS MODAL -->
+  <div class="modal fade" id="chatRoomsModal" tabindex="-1" role="dialog" aria-labelledby="chatRoomsLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="chatRoomsLabel">Join a chat room</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="chatRoomsSelect">Select a chat room:</label>
+            <select class="form-control" id="chatRoomsSelect">
+            </select>
+            <button type="button" class="btn btn-primary center-block" id="createNewChatRoomButton">Create new</button>
+            <button type="button" class="btn btn-primary center-block hidden" id="chooseFromExistingChatRoomsButton">Choose from existing</button>
+            <label class="hidden" for="newChatRoomInput" id="newChatRoomInputLabel">Enter a chat room name to create:</label>
+            <input class="form-control hidden" type="text" id="newChatRoomInput">
+          </div>
+          <div id="chatRoomsErrorOutput">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="chatRoomsJoinButton">Join</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END CHAT ROOMS MODAL -->
 
 
   <!-- NEW MESSAGE MODAL -->
@@ -241,6 +276,7 @@
   <script src="js/EventListeners.js"></script>
   <script src="js/Messages.js"></script>
   <script src="js/Profile.js"></script>
+  <script src="js/ChatRooms.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
