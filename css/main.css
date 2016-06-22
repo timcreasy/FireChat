@@ -70,3 +70,12 @@ img {
 #createNewChatRoomButton {
   margin-top: 10px;
 }
+
+.lastLoginLabel {
+  font-weight: bold;
+}
+
+.lastLoginLabel,
+.lastLoginString {
+  text-align: center;
+}

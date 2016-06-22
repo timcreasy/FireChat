@@ -79,7 +79,7 @@ var Chatty = (function(Chatty) {
     var messageCard = $('<div class="messageCard"></div>');
     var messageImg = $('<div class="messageUserImage"></div>');
     var messageText = $('<p class="messageText"></p>').text(currentMessage);
-    var messageUser = $('<h6 class="messageUser"></h6>').text(currentUser + ':');
+    var messageUser = $('<h6 class="messageUser" rel="popover" data-trigger="focus" tabindex="0" data-placement="top"></h6>').text(currentUser + ':');
     var messageTimestamp = $('<h6 class="messageTimestamp"></h6>').text( '(' + currentMessageTimestamp + ')');
 
 
@@ -114,9 +114,20 @@ var Chatty = (function(Chatty) {
     messageCard.append(" ");
     messageCard.append(messageText);
 
+    // CREATE POPOVER
+    if (currentUser !== "Guest") {
 
-    // Add click event listener to card
-    messageCard.click(Chatty.messageCardClicked);
+      Chatty.firebaseUsersRef.child(currentUserID).once('value', function(dataSnapshot) {
+        $(messageUser).popover({
+          title: "User: " + currentUser,
+          html: true,
+          content: `<h6 class="lastLoginLabel">Last Login:</h6>
+                    <h6 class="lastLoginString">${dataSnapshot.val().lastLogin}</h6>`
+        });
+
+      });
+
+    }
 
     // Add unique ID to messageCard
     messageCard.attr('id', "msg" + messageKey);
@@ -141,7 +152,7 @@ var Chatty = (function(Chatty) {
     var messageCard = $('<div class="messageCard"></div>');
     var messageImg = $('<div class="messageUserImage"></div>');
     var messageText = $('<p class="messageText"></p>').text(currentMessage);
-    var messageUser = $('<h6 class="messageUser"></h6>').text(currentUser + ': ');
+    var messageUser = $('<h6 class="messageUser" rel="popover" data-trigger="focus" tabindex="0" data-placement="top"></h6>').text(currentUser + ':');
     var messageTimestamp = $('<h6 class="messageTimestamp"></h6>').text( '(' + currentMessageTimestamp + ')');
     var messageEditButton = $('<button class="messageEditButton btn btn-default btn-sm">Edit</button>');
     var messageDeleteButton = $('<button class="messageDeleteButton btn btn-danger btn-sm">Delete</button>');
@@ -180,6 +191,22 @@ var Chatty = (function(Chatty) {
     messageCard.append(messageText);
     messageCard.append(messageDeleteButton);
     messageCard.append(messageEditButton);
+
+    // CREATE POPOVER
+    if (currentUser !== "Guest") {
+
+      Chatty.firebaseUsersRef.child(currentUserID).once('value', function(dataSnapshot) {
+        $(messageUser).popover({
+          title: "User: " + currentUser,
+          html: true,
+          content: `<h6 class="lastLoginLabel">Last Login:</h6>
+                    <h6 class="lastLoginString">${dataSnapshot.val().lastLogin}</h6>`
+        });
+
+      });
+
+    }
+
 
     // Add click event listener to edit button
     messageEditButton.click(Chatty.messageEditClicked);

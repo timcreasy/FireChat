@@ -1,5 +1,10 @@
 var Chatty = (function(Chatty) {
 
+  Chatty.showUserInfo = function() {
+
+    
+
+  };
 
 
   // ============= Add own picture button clicked =============== //
