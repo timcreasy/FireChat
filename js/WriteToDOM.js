@@ -68,7 +68,7 @@ var Chatty = (function(Chatty) {
 
   // ============= Buildout message card without delete button =============== //
   Chatty.createMessageCardNoDelete = function(message, messageKey) {
-    
+
     // Get data out of message object
     var currentMessage = message.message;
     var currentUser = message.user;

@@ -107,50 +107,12 @@ var Chatty = (function(Chatty) {
       Chatty.currentChatRoomRef = new Firebase(chatRoomToJoinURL);
       Chatty.currentChatRoomName = chatRoomToJoin;
 
-      // Rewrite messages to DOM based on chat room selected
-      Chatty.rewriteMessages();
+      // Empty messages container
+      $('#messagesContainer').html('');
 
-      // Add event listeners
-
-      // // Retrieve new messages as they are added to our database in main chat
-      // Chatty.currentChatRoomRef.on("child_added", function(snapshot) {
-
-      //   // Get message
-      //   var newMessage = snapshot.val();
-      //   var newMessageKey = snapshot.key();
-      //   console.log(newMessage);
-
-      //   if (newMessage !== "0") {
-      //     // If message added matches logged in user, add delete button
-      //     if(newMessage.user === Chatty.currentUser) {
-      //       Chatty.writeMessageToDOM(newMessage, newMessageKey);
-      //     } else {
-      //       Chatty.writeMessageToDOMAsGuest(newMessage, newMessageKey);
-      //     }
-
-      //   }
-
-      // });
-
-      // Remove messages when removed from database
-      Chatty.currentChatRoomRef.on('child_removed', function(oldChildSnapshot) {
-        
-        // Get removed message DOM tag
-        var messageTag = "#msg" + oldChildSnapshot.key();
-
-        // Remove message
-        $(messageTag).remove();
-
-      });
-
-      // When users changes
-      Chatty.firebaseUsersRef.on('value', function(dataSnapshot) {
-        Chatty.rewriteMessages(Chatty.currentChatRoomRef);
-      });
-
-      // When message edited
+      // Add listener for this chat room for any value change (new message, remove message, editing)
       Chatty.currentChatRoomRef.on('value', function(dataSnapshot) {
-        Chatty.rewriteMessages(Chatty.currentChatRoomRef);
+        Chatty.rewriteMessages();
       });
 
       // Change chat room header text
@@ -160,10 +122,9 @@ var Chatty = (function(Chatty) {
       $('#chatRoomsModal').modal('hide');
 
 
-
-
     // If on custom chat room screen
     } else {
+
       // If input is empty, throw error
       if ( $('#newChatRoomInput').val() === "" ) {
 
@@ -187,48 +148,9 @@ var Chatty = (function(Chatty) {
         Chatty.currentChatRoomRef = new Firebase(newChatRoomURL);
         Chatty.currentChatRoomName = newChatRoomName;
 
-        // Rewrite messages to DOM based on chat room
-        Chatty.rewriteMessages();
-
-
-        // Add event listeners
-
-        // Retrieve new messages as they are added to our database in main chat
-        Chatty.currentChatRoomRef.on("child_added", function(snapshot) {
-          
-          // Get message
-          var newMessage = snapshot.val();
-          var newMessageKey = snapshot.key();
-
-
-          // If message added matches logged in user, add delete button
-          if(newMessage.user === Chatty.currentUser) {
-            Chatty.writeMessageToDOM(newMessage, newMessageKey);
-          } else {
-            Chatty.writeMessageToDOMAsGuest(newMessage, newMessageKey);
-          }
-
-        });
-
-        // Remove messages when removed from database
-        Chatty.currentChatRoomRef.on('child_removed', function(oldChildSnapshot) {
-          
-          // Get removed message DOM tag
-          var messageTag = "#msg" + oldChildSnapshot.key();
-
-          // Remove message
-          $(messageTag).remove();
-
-        });
-
-        // When users changes
-        Chatty.firebaseUsersRef.on('value', function(dataSnapshot) {
-          Chatty.rewriteMessages(Chatty.currentChatRoomRef);
-        });
-
-        // When message edited
+        // Add listener for this chat room for any value change (new message, remove message, editing)
         Chatty.currentChatRoomRef.on('value', function(dataSnapshot) {
-          Chatty.rewriteMessages(Chatty.currentChatRoomRef);
+          Chatty.rewriteMessages();
         });
 
         // Change chat room header text
