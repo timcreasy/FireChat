@@ -36,6 +36,16 @@ var Chatty = (function(Chatty) {
     // Edit message done button in modal
     $('#editMessageDoneButton').click(Chatty.editMessageDoneButtonClicked);
 
+    // Chat rooms button clicked in navbar
+    $('#chatRoomsButton').click(Chatty.chatRoomsButtonClicked);
+    $('#chatRoomsJoinButton').click(Chatty.chatRoomsJoinButtonClicked);
+
+    // Create new chat room button clicked in modal
+    $('#createNewChatRoomButton').click(Chatty.createNewChatRoomButtonClicked);
+
+    // Choose from existing chat room button clicked in modal
+    $('#chooseFromExistingChatRoomsButton').click(Chatty.chooseFromExistingChatRoomsButtonClicked);
+
   };
 
   // Return augmented Chatty

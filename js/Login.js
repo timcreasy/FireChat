@@ -19,7 +19,7 @@ var Chatty = (function(Chatty) {
         Chatty.currentUser = authData.password.email;
         Chatty.currentUserID = authData.uid;
         // Rewrite messages to DOM with appropriate delete buttons
-        Chatty.rewriteMessages();
+        Chatty.rewriteMessages(Chatty.currentChatRoomRef);
         // Call loginSuccess
         Chatty.loginSuccess();
       }
@@ -130,7 +130,7 @@ var Chatty = (function(Chatty) {
     // Reset currentUserID
     Chatty.currentUserID = null;
     // Rewrite messages to DOM as guest
-    Chatty.rewriteMessages();
+    Chatty.rewriteMessages(Chatty.currentChatRoomRef);
 
   };
 

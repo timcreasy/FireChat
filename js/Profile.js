@@ -130,7 +130,7 @@ var Chatty = (function(Chatty) {
       });
 
       // Rewrite messages based on new image
-      Chatty.rewriteMessages();
+      Chatty.rewriteMessages(Chatty.currentChatRoomRef);
 
       // Dismiss profile modal
       $('#profileModal').modal('hide');
@@ -159,7 +159,7 @@ var Chatty = (function(Chatty) {
         });
 
         // Rewrite messages based on new image
-        Chatty.rewriteMessages();
+        Chatty.rewriteMessages(Chatty.currentChatRoomRef);
 
         // Clear input field
         $('#profilePictureInput').val("");

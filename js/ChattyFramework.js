@@ -25,9 +25,17 @@ var Chatty = (function(Chatty) {
   Chatty.currentUserID = null;
 
 
+  // ============= Current chat room ref =============== //
+  Chatty.currentChatRoomRef = Chatty.firebaseMessagesRef;
+
+
+  // ============= Current chat room ref =============== //
+  Chatty.currentChatRoomName = "Main";
+
+
   // ============= Adds a message to firebase =============== //
   Chatty.addMessageToFirebase = function(newMessage) {
-    Chatty.firebaseMessagesRef.push(newMessage);
+    Chatty.currentChatRoomRef.push(newMessage);
   };
 
 
