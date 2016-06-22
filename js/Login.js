@@ -31,6 +31,18 @@ var Chatty = (function(Chatty) {
 
 
 
+  Chatty.lastLogin = function() {
+
+    var lastLoginString = Chatty.getTimestamp();
+    // Set profile image to url
+    Chatty.firebaseRef.child("users").child(Chatty.currentUserID).update({
+      "lastLogin": lastLoginString
+    });
+
+  };
+
+
+
   // ============= Login user account failure =============== //
   Chatty.loginFailure = function(error) {
 
@@ -67,6 +79,7 @@ var Chatty = (function(Chatty) {
     $('#loginPasswordInput').val("");
     // Hide modal
     $('#loginUserModal').modal('hide');
+    Chatty.lastLogin();
   };
 
 

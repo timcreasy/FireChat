@@ -125,7 +125,7 @@ var Chatty = (function(Chatty) {
       let newProfilePicture = Chatty.getSelectedPicture();
 
       // Set profile image to url
-      Chatty.firebaseRef.child("users").child(Chatty.currentUserID).set({
+      Chatty.firebaseRef.child("users").child(Chatty.currentUserID).update({
         "profileImage": newProfilePicture,
       });
 

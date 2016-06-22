@@ -1,2 +1,3 @@
 Chatty.addFirebaseEvents();
 Chatty.addEventListeners();
+
