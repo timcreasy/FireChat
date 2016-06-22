@@ -1,5 +1,10 @@
 var Chatty = (function(Chatty) {
 
+  Chatty.showUserInfo = function() {
+
+    
+
+  };
 
 
   // ============= Add own picture button clicked =============== //
@@ -125,7 +130,7 @@ var Chatty = (function(Chatty) {
       let newProfilePicture = Chatty.getSelectedPicture();
 
       // Set profile image to url
-      Chatty.firebaseRef.child("users").child(Chatty.currentUserID).set({
+      Chatty.firebaseRef.child("users").child(Chatty.currentUserID).update({
         "profileImage": newProfilePicture,
       });
 
