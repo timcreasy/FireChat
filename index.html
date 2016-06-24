@@ -10,6 +10,7 @@
   <!-- FIREBASE -->
   <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 
+
 </head>
 <body>
 
@@ -60,7 +61,7 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <label for="chatRoomsSelect">Select a chat room:</label>
+            <label id="chatRoomsSelectLabel" for="chatRoomsSelect">Select a chat room:</label>
             <select class="form-control" id="chatRoomsSelect">
             </select>
             <button type="button" class="btn btn-primary center-block" id="createNewChatRoomButton">Create new</button>
@@ -268,15 +269,6 @@
   <!-- BOOTSTRAP JS -->
   <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- PERSONAL JS -->
-  <script src="js/ChattyFramework.js"></script>
-  <script src="js/WriteToDOM.js"></script>
-  <script src="js/CreateAccount.js"></script>
-  <script src="js/Login.js"></script>
-  <script src="js/Firebase.js"></script>
-  <script src="js/EventListeners.js"></script>
-  <script src="js/Messages.js"></script>
-  <script src="js/Profile.js"></script>
-  <script src="js/ChatRooms.js"></script>
-  <script src="js/main.js"></script>
+  <script src="javascript/bundle.js"></script>
 </body>
 </html>
