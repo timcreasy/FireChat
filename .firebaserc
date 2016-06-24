@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "chattytc"
+    "chatifytc": "chatifytc",
+    "default": "chatifytc"
   }
 }
