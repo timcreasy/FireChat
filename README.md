@@ -11,3 +11,5 @@ $ gulp
 $ firebase serve
 ```
 Navigate to the specified URL to see FireChat in action.
+###Deployed Example:
+https://chatifytc.firebaseapp.com/
